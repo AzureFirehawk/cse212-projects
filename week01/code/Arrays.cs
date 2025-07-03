@@ -1,3 +1,5 @@
+using Microsoft.VisualStudio.TestPlatform.ObjectModel;
+
 public static class Arrays
 {
     /// <summary>
@@ -13,7 +15,22 @@ public static class Arrays
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
 
-        return []; // replace this return statement with your own
+        // Steps: -create an empty array to store the results
+        //        -set up a loop to itterate multiples of the number up to 
+        //            the given length (int i = 1; i <= length; i++)
+        //        -multiply the number by i and add it to the array at the appropriate index (i - 1)
+
+        // create an empty array to hold the results
+        var results = new double[length];
+
+        // set up a loop to itterate multiples of the number up to the given length
+        for (int i = 1; i <= length; i++)
+        {
+            // multiply the number by i and add it to the array at the appropriate index (i - 1)
+            results[i - 1] = number * i;
+        }
+
+        return results;
     }
 
     /// <summary>
@@ -29,5 +46,23 @@ public static class Arrays
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
+
+        // Steps: -create a new empty list to process the results
+        //        -remove 'amount' of items from the end of the list and put into a new array
+        //        -add the rest of the original list to the end of the new array
+        //        -return the new array
+
+        // create a new empty list to process the results
+        var results = new List<int>();
+
+        // move 'amount' of items from the end of the list and put into a new array
+        results.AddRange(data.GetRange(data.Count - amount, amount));
+
+        // add the rest of the original list to the end of the new array
+        results.AddRange(data.GetRange(0, data.Count - amount));
+
+        // return the new array
+        data.Clear();
+        data.AddRange(results);
     }
 }
