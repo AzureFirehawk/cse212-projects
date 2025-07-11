@@ -12,6 +12,9 @@ public class TakingTurnsQueueTests
     // run until the queue is empty
     // Expected Result: Bob, Tim, Sue, Bob, Tim, Sue, Tim, Sue, Tim, Tim
     // Defect(s) Found: 
+    // The program expected "Bob" to be returned, when instead "Sue" was returned. 
+    // Likely, people were not enqueued properly.
+    // Fix: Enqueue method updated to add person to the end of the queue.
     public void TestTakingTurnsQueue_FiniteRepetition()
     {
         var bob = new Person("Bob", 2);
@@ -44,6 +47,8 @@ public class TakingTurnsQueueTests
     // After running 5 times, add George with 3 turns.  Run until the queue is empty.
     // Expected Result: Bob, Tim, Sue, Bob, Tim, Sue, Tim, George, Sue, Tim, George, Tim, George
     // Defect(s) Found: 
+    // Wrong person is being displayed, also due to issues with Enqueue method.
+    // Fix: Enqueue method updated to add person to the end of the queue.
     public void TestTakingTurnsQueue_AddPlayerMidway()
     {
         var bob = new Person("Bob", 2);
@@ -86,6 +91,9 @@ public class TakingTurnsQueueTests
     // Run 10 times.
     // Expected Result: Bob, Tim, Sue, Bob, Tim, Sue, Tim, Sue, Tim, Tim
     // Defect(s) Found: 
+    // The program expected "Tim" to be returned, when instead "Sue" was returned.
+    // Tim should have infinite turns, but was removed from the queue.
+    // Fix: getNextPerson method updated to enqueue people with infinite(0) turns.
     public void TestTakingTurnsQueue_ForeverZero()
     {
         var timTurns = 0;
@@ -117,6 +125,9 @@ public class TakingTurnsQueueTests
     // Run 10 times.
     // Expected Result: Tim, Sue, Tim, Sue, Tim, Sue, Tim, Tim, Tim, Tim
     // Defect(s) Found: 
+    // The program expected "Tim" to be returned, when instead "Sue" was returned.
+    // Tim was removed from queue after one turn.
+    // Fix: getNextPerson method updated to enqueue people with turns <= 0.
     public void TestTakingTurnsQueue_ForeverNegative()
     {
         var timTurns = -3;
@@ -144,6 +155,7 @@ public class TakingTurnsQueueTests
     // Scenario: Try to get the next person from an empty queue
     // Expected Result: Exception should be thrown with appropriate error message.
     // Defect(s) Found: 
+    // No errors found.
     public void TestTakingTurnsQueue_Empty()
     {
         var players = new TakingTurnsQueue();
