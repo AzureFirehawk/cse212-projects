@@ -155,7 +155,7 @@ public class TakingTurnsQueueTests
     // Scenario: Try to get the next person from an empty queue
     // Expected Result: Exception should be thrown with appropriate error message.
     // Defect(s) Found: 
-    // No errors found.
+    // No errors found. Appropriate exception was thrown.
     public void TestTakingTurnsQueue_Empty()
     {
         var players = new TakingTurnsQueue();
