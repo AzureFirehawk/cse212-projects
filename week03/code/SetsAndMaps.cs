@@ -27,7 +27,7 @@ public static class SetsAndMaps
 
         foreach (var word in words)
         {
-            string reversed = new string(word.ToCharArray().Reverse().ToArray());
+            string reversed = $"{word[1]}{word[0]}";
             if (set.Contains(reversed) && word != reversed)
             {
                 result.Add($"{word} & {reversed}");
