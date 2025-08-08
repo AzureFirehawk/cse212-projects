@@ -1,3 +1,6 @@
+using System.Diagnostics.Tracing;
+using Microsoft.VisualBasic;
+
 public class Node
 {
     public int Data { get; set; }
@@ -18,7 +21,7 @@ public class Node
             // Insert to the left
             if (Left is null)
                 Left = new Node(value);
-            else if (Left.Data == value)
+            else if (Left.Contains(value))
                 return;
             else
                 Left.Insert(value);
@@ -28,7 +31,7 @@ public class Node
             // Insert to the right
             if (Right is null)
                 Right = new Node(value);
-            else if (Right.Data == value)
+            else if (Right.Contains(value))
                 return;
             else
                 Right.Insert(value);
@@ -51,8 +54,9 @@ public class Node
     {
         // TODO Start Problem 4
 
-        int leftHeight = Left?.GetHeight() ?? 0;
-        int rightHeight = Right?.GetHeight() ?? 0;
+        var leftHeight = Left?.GetHeight() ?? 0;
+        var rightHeight = Right?.GetHeight() ?? 0;
+        
         return Math.Max(leftHeight, rightHeight) + 1; // Replace this line with the correct return statement(s)
     }
 }
